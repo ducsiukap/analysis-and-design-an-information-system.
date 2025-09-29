@@ -14,7 +14,7 @@ Scores:
 |     Phase      |  Score   |
 | :------------: | :------: |
 | `Requirements` | **7/10** |
-|   `Analysis`   |          |
+|   `Analysis`   | **7/10** |
 |    `Design`    |          |
 |  `Implement`   |          |
 
