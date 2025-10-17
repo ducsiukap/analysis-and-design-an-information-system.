@@ -9,7 +9,12 @@ class TournamentServiceImpl(private val td: TournamentDAO) : TournamentService {
     override fun getAllSeason(): ArrayList<Tournament> {
         val seasons = td.findAll()
         //
-        return seasons
+        val ss = ArrayList<Tournament>()
+        ss.add(Tournament(year = 2021))
+        ss.add(Tournament(year = 2023))
+        ss.add(Tournament(year = 2025))
+        ss.sortByDescending { t -> t.year }
+        return ss
     }
 
     override fun getAvailableRaceNumbers(season: Tournament): ArrayList<Int> {

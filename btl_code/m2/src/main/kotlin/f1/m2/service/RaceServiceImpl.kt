@@ -10,6 +10,9 @@ class RaceServiceImpl(private val rd: RaceDAO) : RaceService {
     override fun getSeasonRace(season: Tournament): ArrayList<Race> {
         val races = rd.findAllByTournamentId(season.id)
         //
+        races.add(Race(1, "HN grandprix", raceNum = 9))
+        races.add(Race(2, "AAA grandprix", raceNum = 12))
+        races.sortByDescending { race -> race.raceNum }
         return races
     }
 

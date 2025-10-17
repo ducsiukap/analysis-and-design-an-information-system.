@@ -4,5 +4,5 @@ class TeamResult(
     id: Int = -1,
     name: String = "",
     country: String = "",
-    var totalPoints: Int = -1,
+    var totalPoint: Int = -1,
 ) : Team(id, name, country)

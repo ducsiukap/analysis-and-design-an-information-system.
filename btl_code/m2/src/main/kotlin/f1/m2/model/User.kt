@@ -5,5 +5,6 @@ open class User(
     var fullName: String = "",
     var username: String = "",
     var password: String = "",
-    var mail: String = ""
+    var mail: String = "",
+    val type: String = "staff"
 )

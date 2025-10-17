@@ -11,6 +11,7 @@ class StaffServiceImpl(private val sd: StaffDAO) : StaffService {
     override fun getStaff(user: User): Staff? {
         val staff = sd.findOneByUser(user.id)
         //
-        return staff
+//        return staff
+        return Staff(fullName = "vduczz")
     }
 }

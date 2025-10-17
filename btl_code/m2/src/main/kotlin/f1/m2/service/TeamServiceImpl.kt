@@ -12,6 +12,11 @@ class TeamServiceImpl(private val td: TeamDAO) : TeamService {
         val teams = td.findAllByTournamentId(season.id)
         //
 
+        teams.add(Team(name = "VN"))
+        teams.add(Team(name = "USA"))
+        teams.add(Team(name = "TQ"))
+        teams.add(Team(name = "dcmm aaaa"))
+        teams.add(Team(name = "UK"))
         teams.sortBy { t -> t.name }
         return teams
     }

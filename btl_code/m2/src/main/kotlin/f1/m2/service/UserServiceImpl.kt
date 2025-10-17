@@ -9,6 +9,8 @@ class UserServiceImpl(private val ud: UserDAO) : UserService {
     override fun checkLogin(user: User): User? {
         val user = ud.findOne(user.username, user.password)
 
-        return user
+//        return user
+//        return null
+        return User(fullName = "vduczz", type = "staff")
     }
 }

@@ -1,0 +1,109 @@
+body, html {
+    font-family: Roboto, sans-serif, Helvetica, Arial;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    color: #0d1b2a;
+    height: 100%;
+    min-width: 600px;
+}
+
+.page-body {
+    padding: 3px 20px;
+}
+
+.page-body.index {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+}
+
+h1 {
+    font-size: 32px;
+    line-height: 40px;
+}
+
+h2 {
+    font-size: 28px;
+    line-height: 36px;
+}
+
+h3 {
+    font-size: 24px;
+    line-height: 32px;
+}
+
+h4 {
+    font-size: 20px;
+    line-height: 28px;
+}
+
+h5 {
+    font-size: 18px;
+    line-height: 24px;
+}
+
+h6 {
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.form-container {
+    display: flex;
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    width: max-content;
+}
+
+.form .form-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form .form-group {
+    margin-bottom: 10px;
+    padding: 0 20px;
+}
+
+.form .form-group label {
+    opacity: 0.8;
+    display: block;
+}
+
+.form .form-group input {
+    width: 300px;
+}
+
+.form .error {
+    margin: 10px 0;
+    color: red;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+}
+
+.form .btn-group {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form .btn-group button[type="submit"] {
+    background: #0d1b2a;
+    color: #e0e1dd;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 15px;
+}
