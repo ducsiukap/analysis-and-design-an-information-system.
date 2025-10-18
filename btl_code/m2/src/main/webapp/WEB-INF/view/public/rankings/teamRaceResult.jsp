@@ -64,14 +64,14 @@
             <colgroup>
                 <col style="width:10%;">
                 <col style="width:30%;">
-                <col style="width:25%;">
+                <col style="width:30%;">
                 <col style="width:10%;">
-                <col style="width:15%;">
+                <col style="width:10%;">
                 <col style="width:10%;">
             </colgroup>
             <thead>
             <tr>
-                <th style="">Position</th>
+                <th>Pos.</th>
                 <th>Driver</th>
                 <th>Team</th>
                 <th>Lap</th>
@@ -91,11 +91,26 @@
                     <c:forEach var="result" items="${results}" varStatus="loop">
                         <tr>
                                 <%--                            <td>#${loop.index + 1}</td>--%>
-                            <td>${result.position}</td>
+                            <c:choose>
+                                <c:when test="${result.position eq -1}">
+                                    <td>NC</td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td>${result.position}</td>
+                                </c:otherwise>
+                            </c:choose>
                             <td>${result.driver.name}</td>
                             <td>${result.team.name}</td>
                             <td>${result.laps}</td>
-                            <td>${result.time.toHours()}:${result.time.toMinutes()%60}:${result.time.toSeconds()%60}.${result.time.toMillis()%1000}</td>
+                            <c:choose>
+                                <c:when test="${result.time.toMillis() eq -1}">
+                                    <td>DNF</td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td>${result.time.toHours()}:${result.time.toMinutes()%60}:${result.time.toSeconds()%60}.${result.time.toMillis()%1000}</td>
+                                </c:otherwise>
+                            </c:choose>
+
                             <td>${result.point}</td>
                         </tr>
                     </c:forEach>

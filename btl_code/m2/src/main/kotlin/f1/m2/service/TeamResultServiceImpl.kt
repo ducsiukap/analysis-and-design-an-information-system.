@@ -11,20 +11,14 @@ class TeamResultServiceImpl(private val trd: TeamResultDAO) : TeamResultService 
     override fun getTeamRanking(race: Race): ArrayList<TeamResult> {
         val rankings = trd.findAllByRaceId(race.id)
         //
-
-        rankings.add(TeamResult(name = "VN", totalPoints = 100))
-        rankings.add(TeamResult(name = "TQ", totalPoints = 52))
-        rankings.add(TeamResult(name = "USA", totalPoints = 53))
-        rankings.add(TeamResult(name = "UK", totalPoints = 49))
-        rankings.add(TeamResult(name = "dcmm aaaa", totalPoints = 50))
-        rankings.sortByDescending { r -> r.totalPoints }
+        rankings.sortByDescending { r -> r.totalPoint }
         return rankings
     }
 
     override fun getTeamRanking(season: Tournament): ArrayList<TeamResult> {
         val rankings = trd.findAllByTournamentId(season.id)
         //
-        rankings.sortByDescending { r -> r.totalPoints }
+        rankings.sortByDescending { r -> r.totalPoint }
         return rankings
     }
 }

@@ -50,14 +50,14 @@
     <div class="table-container">
         <table class="ranking-table">
             <colgroup>
-                <col style="width:15%;">
                 <col style="width:60%;">
-                <col style="width:25%;">
+                <col style="width:20%;">
+                <col style="width:20%;">
             </colgroup>
             <thead>
             <tr>
                 <th>Race</th>
-                <th>Team</th>
+                <th>Date</th>
                 <th>Point</th>
             </tr>
             </thead>

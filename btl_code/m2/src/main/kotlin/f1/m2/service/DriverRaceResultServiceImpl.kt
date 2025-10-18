@@ -13,18 +13,6 @@ class DriverRaceResultServiceImpl(private val drrd: DriverRaceResultDAO) : Drive
     override fun getRaceResult(race: Race, team: Team): ArrayList<DriverRaceResult> {
         val results = drrd.findAllByRaceAndTeam(race.id, team.id)
         //
-
-        results.add(
-            DriverRaceResult(
-                position = 1,
-                point = 25,
-                time = Duration.parse("PT1H30M"),
-                race = race,
-                team = team,
-                driver = Driver(name = "vduczz"),
-                laps = 52
-            )
-        )
         results.sortByDescending { result -> result.point }
         return results
     }

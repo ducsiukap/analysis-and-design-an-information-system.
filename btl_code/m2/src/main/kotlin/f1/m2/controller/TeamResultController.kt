@@ -11,17 +11,12 @@ import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.servlet.view.InternalResourceViewResolver
-import kotlin.math.PI
 
 @Controller
 class TeamResultController(
     private val trService: TeamResultService,
     private val tourService: TournamentService,
-    private val raceService: RaceService,
-    private val internalResourceViewResolver: InternalResourceViewResolver,
+    private val raceService: RaceService
 ) {
 
 
@@ -45,8 +40,11 @@ class TeamResultController(
         }
 
         // get & save races
-        val races = raceService.getSeasonRace(selected)
-        session.setAttribute("races", races)
+        var races = session.getAttribute("races") as? ArrayList<Race> ?: emptyList()
+        if (races.isEmpty()) {
+            races = raceService.getSeasonRace(selected)
+            session.setAttribute("races", races)
+        }
         // get rankings
         val rankings = trService.getTeamRanking(selected)
 

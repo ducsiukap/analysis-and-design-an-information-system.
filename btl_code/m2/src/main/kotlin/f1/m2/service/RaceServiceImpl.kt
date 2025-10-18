@@ -4,16 +4,19 @@ import f1.m2.dao.RaceDAO
 import f1.m2.model.Race
 import f1.m2.model.Tournament
 import org.springframework.stereotype.Service
+import java.sql.SQLException
 
 @Service
 class RaceServiceImpl(private val rd: RaceDAO) : RaceService {
     override fun getSeasonRace(season: Tournament): ArrayList<Race> {
-        val races = rd.findAllByTournamentId(season.id)
-        //
-        races.add(Race(1, "HN grandprix", raceNum = 9))
-        races.add(Race(2, "AAA grandprix", raceNum = 12))
-        races.sortByDescending { race -> race.raceNum }
-        return races
+        try {
+            val races = rd.findAllByTournamentId(season.id)
+            //
+            races.sortBy { race -> race.time }
+            return races
+        } catch (e: SQLException) {
+            return ArrayList()
+        }
     }
 
     override fun updateRace(race: Race): Boolean {

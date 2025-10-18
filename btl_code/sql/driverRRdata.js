@@ -85,37 +85,43 @@ function toMS(timeStr) {
     return hours * 3600 * 1000 + minutes * 60 * 1000 + seconds * 1000 + millis;
 }
 
-//
-// for (let i = 1; i < 19; i++) {
-//     let res = await fetch(`https://f1api.dev/api/2025/${i}/race`);
-//     res = await res.json();
-//
-//     const race = res.races;
-//     const matchedRace = r.find(x => x.race === race.raceName);
-//     // console.log(matchedRace);
-//     const results = race.results;
-//     if (i === 6) results[0].time = "1:28:51.587"
-//     else if (i === 8) results[0].time = "1:40:33.843"
-//     else if (i === 12) results[0].time = "1:37:15.735"
-//     else if (i === 15) results[0].time = "1:38:29.849"
-//     for (let r of results) {
-//         const driverid = d.find(x => x.name.startsWith(r.driver.name)).id;
-//         const teamid = t.find(x => r.team.teamName === x.name).id;
-//         let time = r.time;
-//         let laps = matchedRace.laps;
-//
-//         if (time.startsWith("DNF")) {
-//             laps = time.slice(5, (time.indexOf(")")))
-//             time = -1
-//         } else if (time.startsWith("+")) {
-//             time = toMS(calcTime(results[0].time, time));
-//         } else {
-//             time = toMS(time);
-//         }
-//         if (r.grid === "not available") r.grid = "null"
-//         console.log(`(${r.grid}, ${laps}, ${time}, ${r.points}, ${matchedRace.id}, ${driverid}, ${teamid}),`)
-//     }
-// }
+
+for (let i = 1; i < 19; i++) {
+    let res = await fetch(`https://f1api.dev/api/2025/${i}/race`);
+    res = await res.json();
+
+    const race = res.races;
+    const matchedRace = r.find(x => x.race === race.raceName);
+    // console.log(matchedRace);
+    const results = race.results;
+    if (i === 6) results[0].time = "1:28:51.587"
+    else if (i === 8) results[0].time = "1:40:33.843"
+    else if (i === 12) results[0].time = "1:37:15.735"
+    else if (i === 15) results[0].time = "1:38:29.849"
+    for (let r of results) {
+        const driverid = d.find(x => x.name.startsWith(r.driver.name)).id;
+        const teamid = t.find(x => r.team.teamName === x.name).id;
+        let time = r.time;
+        let laps = matchedRace.laps;
+
+        if (time.startsWith("DNF")) {
+            laps = time.slice(5, (time.indexOf(")")))
+            time = -1
+        } else if (time.startsWith("+")) {
+            time = toMS(calcTime(results[0].time, time));
+        } else {
+            time = toMS(time);
+        }
+        if (r.grid === "not available") r.grid = "null"
+
+        if (r.position === "-" || r.position === "NC") {
+            r.position = "-1"
+            if (r.position === "-1")
+                laps -= Math.max(laps - 1, 0);
+        }
+        console.log(`(${r.grid}, ${laps}, ${time}, ${r.position}, ${r.points}, ${matchedRace.id}, ${driverid}, ${teamid}),`)
+    }
+}
 
 // =================================
 const td = [
@@ -135,7 +141,7 @@ for (let i = 18; i < 24; ++i) {
     for (let j = 0; j < 10; ++j) {
         for (let k = 0; k < td[j].drivers.length; k++) {
 
-            console.log(`(${0}, ${0}, ${0}, ${0}, ${r[i].id}, ${td[j].drivers[k]}, ${td[j].teamId}),`)
+            console.log(`(0, 0, 0, 0, 0, ${r[i].id}, ${td[j].drivers[k]}, ${td[j].teamId}),`)
         }
     }
 }
