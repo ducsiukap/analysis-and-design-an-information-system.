@@ -38,7 +38,37 @@ class TournamentDAOImpl : DAO(), TournamentDAO {
 
     override fun findFreeSeasonRaceNums(tid: Int): ArrayList<Int> {
         val raceNums = ArrayList<Int>()
-        //
+        // select expected race amount
+        var sql = """
+            SELECT expectedRaceAmount
+            FROM tblTournament 
+            WHERE id = ?
+        """.trimIndent()
+        conn.prepareStatement(sql).use { pstm ->
+            pstm.setInt(1, tid)
+            pstm.executeQuery().use {
+                if (it.next())
+                    raceNums.add(it.getInt(1))
+            }
+        }
+
+        // select race number that is used
+        sql = """
+            SELECT raceNumber
+            FROM tblRace
+            WHERE tblTournamentId = ?
+        """.trimIndent()
+        conn.prepareStatement(sql).use { pstm ->
+            pstm.setInt(1, tid)
+            pstm.executeQuery().use {
+                while (it.next()) {
+                    raceNums.add(it.getInt(1))
+                }
+            }
+        }
+
+        // first elems is expected race amount
+        // from the seconds to the end is the race number that was used
         return raceNums
     }
 }

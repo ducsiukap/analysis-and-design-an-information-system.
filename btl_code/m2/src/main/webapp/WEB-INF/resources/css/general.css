@@ -61,6 +61,7 @@ h6 {
     flex-direction: column;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     width: max-content;
+    padding: 20px;
 }
 
 .form .form-title {
@@ -78,8 +79,21 @@ h6 {
     display: block;
 }
 
-.form .form-group input {
-    width: 300px;
+.form .form-group input[type="text"],
+.form .form-group input[type="password"] {
+    width: 100%;
+    min-width: 240px;
+}
+
+.form .form-group-multi {
+    margin-bottom: 10px;
+    padding: 0 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.form .form-group-multi input {
+    width: 100%
 }
 
 .form .error {
@@ -91,19 +105,42 @@ h6 {
     text-align: center;
 }
 
-.form .btn-group {
+.btn-group {
     display: flex;
     justify-content: center;
+    gap: 5px;
+}
 
+.form .btn-group {
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.form .btn-group button[type="submit"] {
-    background: #0d1b2a;
-    color: #e0e1dd;
+.btn-group button {
     cursor: pointer;
     border: none;
     border-radius: 3px;
     padding: 8px 15px;
+}
+
+.btn-group button:hover {
+    font-style: italic;
+    font-weight: bold;
+}
+
+.btn-group button[type="submit"] {
+    background: #0d1b2a;
+    color: #e0e1dd;
+}
+
+.default-btn {
+    background: dodgerblue;
+}
+
+.modify-btn {
+    background: #ffd96e;
+}
+
+.delete-btn {
+    background: firebrick;
 }

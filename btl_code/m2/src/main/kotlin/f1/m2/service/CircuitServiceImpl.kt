@@ -10,6 +10,7 @@ class CircuitServiceImpl(private val cd: CircuitDAO) : CircuitService {
     override fun getAllCircuits(): ArrayList<Circuit> {
         val circuits = cd.findAll()
         //
+        circuits.sortBy { it.name }
         return circuits
     }
 }

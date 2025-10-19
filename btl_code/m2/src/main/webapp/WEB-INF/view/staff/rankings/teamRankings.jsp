@@ -57,7 +57,7 @@
             </colgroup>
             <thead>
             <tr>
-                <th style="">Rank</th>
+                <th>Rank</th>
                 <th>Team</th>
                 <th>Point</th>
             </tr>

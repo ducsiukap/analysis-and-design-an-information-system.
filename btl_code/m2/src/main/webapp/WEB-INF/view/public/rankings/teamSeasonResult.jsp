@@ -96,7 +96,7 @@
         navigate("${basedUrl}" + year + "/team")
     }
 
-    function getRankings() {
+    function getStats() {
         let year = document.getElementById('tournament').value;
         let team = document.getElementById('team').value;
         navigate("${basedUrl}" + year + "/team/" + team);

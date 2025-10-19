@@ -20,19 +20,26 @@ class RaceServiceImpl(private val rd: RaceDAO) : RaceService {
     }
 
     override fun updateRace(race: Race): Boolean {
+        if (race.name.isEmpty()) throw Exception("race name is null")
+        if (race.numberOfLaps <= 0) throw Exception("number of laps is invalid")
+        if (race.raceNum <= 0) throw Exception("race number is invalid")
+        if (race.time.year != race.tournament.year) throw Exception("race time not match season")
+
         val result = rd.updateRace(race)
         //
         return result
     }
 
     override fun deleteRace(race: Race): Boolean {
-        val result = rd.deleteById(race.id)
-        //
-        return result
+        return try {
+            rd.deleteById(race.id)
+        } catch (e: SQLException) {
+            false
+        }
     }
 
     override fun getRace(rid: Int): Race? {
-        val race = rd.findOneById(rid)
+        val race = rd.findOne(rid)
         //
         return race
     }

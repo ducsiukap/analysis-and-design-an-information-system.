@@ -76,7 +76,7 @@ create table tblDriverRaceResult(
     tblRaceId int not null,
     tblDriverId int not null, 
     tblTeamId int not null,
-    foreign key (tblRaceId) references tblRace(id),
+    foreign key (tblRaceId) references tblRace(id) on delete cascade,
     foreign key (tblDriverId) references tblDriver(id),
     foreign key (tblTeamId) references tblTeam(id)
 );
@@ -700,3 +700,75 @@ insert into tblDriverRaceResult(startingPos, laps, time, position, point, tblRac
 (0, 0, 0, 0, 0, 24, 19, 9),
 (0, 0, 0, 0, 0, 24, 16, 10),
 (0, 0, 0, 0, 0, 24, 20, 10);
+
+-- ================================
+-- stored procedure
+-- ================================
+delimiter zz
+create procedure updateRace(
+	in p_id int,
+    in p_name varchar(100),
+    in p_numberOfLaps int,
+    in p_raceNumber int,
+    in p_time datetime,
+    in p_status varchar(50),
+    in p_tblTournamentId int,
+    in p_tblCircuitId int,
+    out ok boolean
+)
+begin
+	-- check
+    if p_name is null or p_numberOfLaps <= 0 or p_raceNumber <= 0 then 
+		signal sqlstate '45000' set message_text='name/numberOfLaps/raceNumber is not valid';
+	end if;
+	
+	-- check tournament 
+    if not exists(select 1 from tblTournament where id = p_tblTournamentId) then 
+		signal sqlstate '45000' set message_text='Tournament not found';
+	end if;
+    
+	-- check circuit
+	if not exists(select 1 from tblCircuit where id = p_tblCircuitId) then 
+		signal sqlstate '45000' set message_text='Circuit not found';
+	end if;
+    
+    -- new race    
+	if p_id = -1 then
+		if exists (select 1 from tblRace where name=p_name or timestampdiff(day, time, p_time)=0 or raceNumber=p_raceNumber) then
+			signal sqlstate '45000' set message_text = 'Duplicate race/time';
+		end if;
+        --  insert
+		insert into tblRace(name, numberOfLaps, raceNumber, time, status, tblTournamentId, tblCircuitId) values
+        (p_name, p_numberOfLaps, p_raceNumber, p_time, p_status, p_tblTournamentId, p_tblCircuitId);
+		set ok = true;
+    else 
+		if exists(
+        select 1 from tblRace where 
+			name = p_name and
+            numberOfLaps = p_numberOfLaps and 
+            raceNumber = p_raceNumber and 
+            time = p_time and 
+            status = p_status and
+            tblTournamentId = p_tblTournamentId and
+            tblCircuitId = p_tblCircuitId
+        ) then
+			signal sqlstate '45000' set message_text = 'Nothing to change';
+		end if;
+        
+		update tblRace set 
+			name = p_name,
+            numberOfLaps = p_numberOfLaps,
+            raceNumber = p_raceNumber, 
+            time = p_time,
+            status = p_status, 
+            tblTournamentId = p_tblTournamentId, 
+            tblCircuitId = p_tblCircuitId
+		where id = p_id;
+        
+        if row_count() = 0 then 
+			signal sqlstate '45000' set message_text = 'Race not found';
+		end if;
+        set ok = true;
+	end if;
+end zz
+delimiter ;

@@ -2,6 +2,8 @@
     position: static;
     padding: 5px 0;
     margin: 5px 50px 10px;
+    display: flex;
+    gap: 10px;
 }
 
 #form-ranking {

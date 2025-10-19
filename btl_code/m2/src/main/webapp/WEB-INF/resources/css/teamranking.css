@@ -50,3 +50,7 @@ tbody tr:not(.table-no-data):hover {
     background-color: cornsilk;
     cursor: pointer;
 }
+
+tr button {
+    margin: 5px 0;
+}
