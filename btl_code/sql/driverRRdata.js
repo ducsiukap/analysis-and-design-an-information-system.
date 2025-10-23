@@ -106,7 +106,7 @@ for (let i = 1; i < 19; i++) {
 
         if (time.startsWith("DNF")) {
             laps = time.slice(5, (time.indexOf(")")))
-            time = -1
+            time = 0
         } else if (time.startsWith("+")) {
             time = toMS(calcTime(results[0].time, time));
         } else {
@@ -115,9 +115,7 @@ for (let i = 1; i < 19; i++) {
         if (r.grid === "not available") r.grid = "null"
 
         if (r.position === "-" || r.position === "NC") {
-            r.position = "-1"
-            if (r.position === "-1")
-                laps -= Math.max(laps - 1, 0);
+            r.position = 0
         }
         console.log(`(${r.grid}, ${laps}, ${time}, ${r.position}, ${r.points}, ${matchedRace.id}, ${driverid}, ${teamid}),`)
     }

@@ -1,0 +1,180 @@
+body, html {
+    font-family: Roboto, sans-serif, Helvetica, Arial;
+    font-size: 16px;
+    color: #0d1b2a;
+    /*height: 100%;*/
+    min-width: 480px;
+}
+
+.page-body {
+    padding-top: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.page-body.index {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+}
+
+h1 {
+    font-size: 32px;
+    line-height: 36px;
+}
+
+h2 {
+    font-size: 28px;
+    line-height: 30px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+h6 {
+    font-size: 16px;
+}
+
+.box {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.form {
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    width: max-content;
+    padding: 20px;
+}
+
+.form .form-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form .form-group {
+    margin-bottom: 10px;
+    padding: 0 20px;
+}
+
+.form .form-group label {
+    opacity: 0.8;
+    display: block;
+}
+
+.form .form-group input[type="text"],
+.form .form-group input[type="password"] {
+    width: 100%;
+    min-width: 240px;
+}
+
+.form .form-group-multi {
+    margin-bottom: 10px;
+    padding: 0 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.form .form-group-multi input {
+    width: 100%
+}
+
+.form .error {
+    margin: 10px 0;
+    color: red;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.form .btn-group {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 15px;
+    color: white;
+    background: #0d1b2a;
+}
+
+button:hover {
+    font-style: italic;
+    font-weight: bold;
+}
+
+.default-btn {
+    background: dodgerblue;
+}
+
+.modify-btn {
+    background: darkorange;
+}
+
+.delete-btn {
+    background: firebrick;
+}
+
+.accept-btn {
+    background: darkgreen;
+}
+
+.sub-nav-row {
+    margin-bottom: 30px;
+    display: flex;
+    gap: 10px;
+}
+
+.sub-nav-row > .btn-group {
+    margin-left: auto;
+    /*height: 50%;*/
+}
+
+.nav-form {
+    display: flex;
+    gap: 10px;
+    font-weight: bold;
+    color: #e0e1dd;
+    align-items: center;
+    margin: 0;
+}
+
+.nav-form > .form-group {
+    padding: 6px;
+    border-radius: 8px;
+    background: #0d1b2a;
+}
+
+.nav-form > .form-group > select {
+    background: none;
+    color: #e0e1dd;
+    font-weight: bold;
+    border: none;
+    padding-bottom: 0;
+}
+
+.nav-form > .form-group > select > option {
+    background: #0d1b2a;
+    color: #e0e1dd;
+    font-weight: bold;
+    border: none;
+}
